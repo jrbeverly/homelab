@@ -2,10 +2,13 @@
 set -ex
 cd /tmp/
 
-ADDRESS=192.168.0.15
-PASSWORD='sethere'
+## Arguments
+ADDRESS="$1"
+PASSWORD="$2"
 
-# Setup on external machine (ssh into it)
+STANDARD_USER=jrbeverly
+DEFAULT_USER=pi
+DEFAULT_PW=raspberry
 
 # Keygen
 #
@@ -15,15 +18,15 @@ ssh-keygen
 # Users
 #
 # Setting up machine users 
-ssh pi:raspberry@$ADDRESS 'bash .. (the below)'
-useradd jrbeverly 
-adduser jrbeverly sudo
+ssh "${DEFAULT_USER}:${DEFAULT_PW}@$ADDRESS"
+useradd $STANDARD_USER 
+adduser $STANDARD_USER sudo
 useradd -m -G adm,dialout,cdrom,sudo,audio,video,plugdev,users,input,netdev,gpio,i2c,spi pi_admin
 
 # Raspi Configuration
 #
 # Configuring the raspberry pi
-ssh jrbeverly:$PASSWORD@$ADDRESS 'bash .. (the below)'
+ssh "${STANDARD_USER}:$PASSWORD@$ADDRESS"
 apt-get update -y
 apt-get upgrade -y
 
