@@ -1,0 +1,39 @@
+version: "2"
+
+services:
+  db:
+    image: mariadb:10
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "#######"
+      MYSQL_DATABASE: "gitea"
+      MYSQL_USER: "gitea"
+      MYSQL_PASSWORD: "#######"
+    networks:
+      - homelab
+    volumes:
+      - /srv/gogs/mysql:/var/lib/mysql
+
+  web:
+    depends_on:
+      - db
+    image: gitea/gitea:latest
+    restart: always
+    hostname: gitea
+    environment:
+      VIRTUAL_HOST: gitea.jrbeverly.me
+      USER_UID: 1000
+      USER_GID: 1000
+    networks:
+      - homelab
+      - nginx-proxy
+    volumes:
+      - /srv/gogs/data:/data
+    ports:
+      - "3000:3000"
+
+networks:
+  homelab:
+  nginx-proxy:
+    external:
+      name: nginxproxy_default
