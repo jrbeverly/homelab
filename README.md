@@ -2,8 +2,7 @@
 
 ## Summary
 
-A collection of templates and utility scripts used in my homelab.
-
+A collection of templates and utility scripts used in my homelab. Most of these are just snippets or experiments.
 
 ## Acknowledgements
 
