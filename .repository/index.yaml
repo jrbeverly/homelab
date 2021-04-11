@@ -1,0 +1,19 @@
+slug: homelab
+description: A collection of templates and utility scripts used in my homelab.
+project: workbench
+namespace:
+status: archived
+icon: icon.svg
+license:
+  type: MIT
+  content: Jonathan Beverly <jrbeverly>
+  year: 2017
+topics: |-
+  [
+    "shell",
+    "one-off",
+    "scripts",
+    "tooling",
+    "it-engineering",
+    "homelab"
+  ]
